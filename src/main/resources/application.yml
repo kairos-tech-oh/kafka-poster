@@ -1,0 +1,23 @@
+app:
+  publishers:
+    sample:
+      topics:
+        local: sample-local-topic
+        dev: sample-dev-topic
+        test: sample-test-topic
+      pathToId: transaction.id
+    payment:
+      topics:
+        local: sample-payment-local
+        dev: sample-payment-dev
+        test: sample-payment-test
+      pathToId: paymentId
+
+
+server:
+  port: 8082
+# server port removed because this app runs as a desktop UI embedded in Spring Boot
+spring:
+  main:
+    allow-bean-definition-overriding: true
+

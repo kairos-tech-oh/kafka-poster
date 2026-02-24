@@ -1,0 +1,38 @@
+{
+  "type": "record",
+  "name": "Transfer",
+  "namespace": "com.example.kafkaswing.avro.transfer",
+  "doc": "A rich transfer record that references Party and contains nested items, enum status, and timestamp.",
+  "fields": [
+    { "name": "id", "type": "string" },
+    { "name": "amount", "type": "double" },
+    { "name": "from", "type": "com.example.kafkaswing.avro.common.Party" },
+    { "name": "to", "type": "com.example.kafkaswing.avro.common.Party" },
+    { "name": "metadata", "type": { "type": "map", "values": "string" }, "default": {} },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "TransferStatus",
+        "symbols": ["PENDING", "COMPLETED", "FAILED"]
+      }
+    },
+    { "name": "timestamp", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    {
+      "name": "items",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Item",
+          "fields": [
+            { "name": "productId", "type": "string" },
+            { "name": "quantity", "type": "int" },
+            { "name": "unitPrice", "type": "double" }
+          ]
+        }
+      },
+      "default": []
+    }
+  ]
+}

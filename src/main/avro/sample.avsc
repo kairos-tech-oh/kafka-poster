@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "Sample",
+  "namespace": "com.example.kafkaswing.avro",
+  "fields": [
+    {
+      "name": "transaction",
+      "type": {
+        "type": "record",
+        "name": "Transaction",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "amount", "type": "double" }
+        ]
+      }
+    },
+    { "name": "payer", "type": "string" }
+  ]
+}

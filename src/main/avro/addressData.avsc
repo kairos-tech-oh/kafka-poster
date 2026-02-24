@@ -1,0 +1,13 @@
+{
+  "type": "record",
+  "name": "AddressData",
+  "namespace": "com.example.kafkaswing.avro.common",
+  "doc": "Reusable address record used by Party and other records.",
+  "fields": [
+    { "name": "street", "type": "string" },
+    { "name": "city", "type": "string" },
+    { "name": "state", "type": ["null", "string"], "default": null },
+    { "name": "zipCode", "type": "string" },
+    { "name": "country", "type": "string", "default": "US" }
+  ]
+}

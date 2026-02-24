@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "Party",
+  "namespace": "com.example.kafkaswing.avro.common",
+  "doc": "Represents a party in a transfer (payer/payee) and references AddressData by full name.",
+  "fields": [
+    { "name": "id", "type": "string" },
+    { "name": "name", "type": "string" },
+    { "name": "accounts", "type": { "type": "map", "values": "string" }, "doc": "Map of account type -> account id" },
+    { "name": "addresses", "type": { "type": "array", "items": "com.example.kafkaswing.avro.common.AddressData" } }
+  ]
+}

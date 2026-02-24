@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "Payment",
+  "namespace": "com.example.kafkaswing.avro.payment",
+  "doc": "Payment record that references Transfer and demonstrates unions, fixed, and decimal logical type.",
+  "fields": [
+    { "name": "paymentId", "type": "string" },
+    { "name": "transfer", "type": "com.example.kafkaswing.avro.transfer.Transfer" },
+    { "name": "description", "type": ["null", "string"], "default": null },
+    { "name": "tags", "type": { "type": "array", "items": "string" }, "default": [] },
+    { "name": "attributes", "type": { "type": "map", "values": ["null", "string"] }, "default": {} },
+    {
+      "name": "fee",
+      "type": { "type": "bytes", "logicalType": "decimal", "precision": 9, "scale": 2 },
+      "doc": "Decimal fee represented as bytes with logicalType decimal"
+    },
+    {
+      "name": "signature",
+      "type": { "type": "string", "name": "Signature" },
+      "doc": "Fixed-size signature field"
+    }
+  ]
+}
