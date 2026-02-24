@@ -13,6 +13,14 @@ app:
         test: sample-payment-test
       pathToId: paymentId
 
+  # brokers mapping allows specifying external bootstrap servers per env key
+  brokers:
+    # for local we will use the embedded broker provided by this app (leave blank or set to special value 'embedded')
+    local: embedded
+    # examples for external brokers - replace with your real bootstrap servers when targeting dev/test
+    dev: localhost:9093
+    test: localhost:9094
+
 
 server:
   port: 8082
@@ -20,4 +28,3 @@ server:
 spring:
   main:
     allow-bean-definition-overriding: true
-

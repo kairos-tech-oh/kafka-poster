@@ -124,6 +124,7 @@ public class MainWindow {
 
     @SuppressWarnings("unchecked")
     private void send() {
+        String env = (String) envSelector.getSelectedItem();
         String topic = topicField.getText();
         if (topic == null || topic.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Select or enter a topic first");
@@ -137,7 +138,9 @@ public class MainWindow {
             JOptionPane.showMessageDialog(frame, "Invalid JSON: " + ex.getMessage());
             return;
         }
-        publisher.send(topic, payload);
+        // determine bootstrap servers for the selected env; default to embedded if not configured
+        String bootstrap = appProperties.getBrokers().getOrDefault(env, "embedded");
+        publisher.sendToBootstrap(bootstrap, topic, payload);
         JOptionPane.showMessageDialog(frame, "Message sent to " + topic);
     }
 
